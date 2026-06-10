@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP PHONES - Loja Premium</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts para Tipografia Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome para Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Lucide Icons para Ícones Vetoriais -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Suporte a gradientes radiais avançados não mapeados nativamente no Tailwind standard CDN */
+    .bg-radial-gradient {
+      background-image: radial-gradient(var(--tw-gradient-stops));
+    }
+
+    /* Transição suave global de temas */
+    .theme-transition {
+      transition: background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                  color 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Animação suave de Fade-In para troca de páginas */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Animação lenta de rotação */
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 15s linear infinite;
+    }
+
+    /* Degradê sutil para suavizar a transição do canvas pro resto do site */
+    .fade-to-bottom {
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+  </style>
+</head>
+<body class="theme-transition min-h-screen bg-[#040406] text-zinc-100 selection:bg-purple-500/30 overflow-x-hidden relative" id="body-root">
+
+  <!-- --- GRID DE FUNDO E AURAS NEON --- -->
+  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden" id="bg-auras-container">
+    <!-- Grid holográfica sutil -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:50px_50px]" id="bg-grid"></div>
+    
+    <!-- Esferas de luz com desfoque de movimento -->
+    <div class="absolute top-[-10%] left-[5%] w-[800px] h-[800px] rounded-full bg-radial-gradient from-purple-900/15 via-transparent to-transparent blur-[140px]" id="aura-1"></div>
+    <div class="absolute top-[35%] right-[-10%] w-[900px] h-[900px] rounded-full bg-radial-gradient from-blue-900/15 via-transparent to-transparent blur-[160px]" id="aura-2"></div>
+    <div class="absolute bottom-[5%] left-[10%] w-[1000px] h-[1000px] rounded-full bg-radial-gradient from-emerald-950/10 via-transparent to-transparent blur-[180px]" id="aura-3"></div>
+  </div>
+
+  <!-- --- NAVBAR FLUTUANTE COGNITIVA --- -->
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl h-16 bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-full flex items-center justify-between px-6 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700" id="navbar">
+    
+    <!-- AP PHONES LOGO -->
+    <div onclick="navigateTo('home')" class="flex items-center gap-2.5 cursor-pointer group">
+      <div class="relative w-8 h-8 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-tr from-purple-500 via-indigo-500 to-blue-500 rounded-lg rotate-45 group-hover:rotate-90 transition-transform duration-700 ease-out"></div>
+        <div class="absolute w-4.5 h-4.5 bg-[#040406] rounded-md rotate-45 transition-colors duration-700" id="logo-inner-cube"></div>
+        <div class="absolute w-2 h-2 bg-gradient-to-tr from-cyan-400 to-emerald-400 rounded-full"></div>
+      </div>
+      <span class="font-bold text-[12px] tracking-[0.3em] bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-400 select-none block" id="logo-text">
+        AP PHONES
+      </span>
+    </div>
+
+    <!-- Menu Central (Nav) -->
+    <div class="hidden md:flex items-center gap-1 p-1 bg-white/[0.03] border border-white/[0.04] rounded-full">
+      <button onclick="navigateTo('home')" class="px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 bg-white/10 text-white" id="nav-btn-home">
+        <span id="txt-menuPhones">Celulares</span>
+      </button>
+      <button onclick="navigateTo('profile')" class="px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 text-zinc-400 hover:text-white" id="nav-btn-profile">
+        <span id="txt-menuProfile">Minha Conta</span>
+      </button>
+      <button onclick="navigateTo('cart')" class="px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 text-zinc-400 hover:text-white" id="nav-btn-cart">
+        <span id="txt-menuCart">Carrinho</span>
+      </button>
+    </div>
+
+    <!-- Controles Ativos (Idioma, Tema, Carrinho) -->
+    <div class="flex items-center gap-2.5">
+      <!-- Seletor de Idioma -->
+      <button onclick="toggleLanguage()" class="p-2 rounded-full border bg-white/[0.04] hover:bg-white/[0.08] border-white/[0.08] text-[10px] font-bold tracking-widest transition-all uppercase text-zinc-300" id="lang-toggle-btn">
+        EN
+      </button>
+
+      <!-- Seletor de Tema -->
+      <button onclick="toggleTheme()" class="p-2 rounded-full border bg-white/[0.04] hover:bg-white/[0.08] border-white/[0.08] transition-all text-yellow-400" id="theme-toggle-btn">
+        <i data-lucide="sun" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Carrinho Trigger -->
+      <div class="relative">
+        <button onclick="toggleCartDrawer(true)" class="p-2.5 rounded-full border bg-white/[0.04] hover:bg-white/[0.08] border-white/[0.08] text-white transition-all duration-300" id="cart-badge-trigger">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-tr from-purple-600 to-pink-500 text-[9px] font-bold flex items-center justify-center rounded-full border border-black animate-bounce text-white hidden" id="cart-badge-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= CONTEÚDO PRINCIPAL (PÁGINAS) ================= -->
+  <main class="relative z-10 min-h-screen">
+    
+    <!-- PÁGINA HOME -->
+    <div id="page-home" class="page-container animate-fadeIn">
+
+      <!-- ================= SEÇÃO: CONSOLE DE INTERAÇÃO 3D (NO INÍCIO DA PÁGINA COM TAMANHO MAXIMIZADO) ================= -->
+      <section id="secao-sobre" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[300vh] pt-32 scroll-mt-24">
+        <div class="sticky top-28 flex flex-col gap-6" id="about-console-container">
+          
+          <!-- Lado Superior: Console de Diagnóstico (Canvas de Rotação 3D Ampliado com Bordas Arredondadas) - AGORA NO TOPO -->
+          <div class="w-full">
+            <div class="relative w-full rounded-[32px] border border-white/[0.08] bg-black/50 overflow-hidden flex flex-col items-center p-6 sm:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.8)] group" id="about-canvas-wrapper">
+              
+              <!-- Efeitos estéticos de console nos cantos -->
+              <div class="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-purple-500/60 rounded-tl-md"></div>
+              <div class="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-purple-500/60 rounded-tr-md"></div>
+              <div class="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-purple-500/60 rounded-bl-md"></div>
+              <div class="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-purple-500/60 rounded-br-md"></div>
+
+              <!-- Centro: O Canvas de Scroll (Widescreen, com tamanho super ampliado e bordas arredondadas) -->
+              <div class="w-full max-w-6xl h-[350px] sm:h-[480px] lg:h-[530px] flex items-center justify-center relative z-10 transition-all duration-500 hover:scale-[1.01]">
+                <canvas id="phoneCanvas" class="w-full h-full object-contain mix-blend-screen rounded-[32px] overflow-hidden shadow-2xl border border-white/[0.05]"></canvas>
+              </div>
+
+              <!-- Painel de Status e Diagnóstico -->
+              <div class="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 pt-6 mt-6 border-t border-white/[0.06] z-20 text-center relative">
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Status do Sistema</span>
+                  <span class="text-xs sm:text-sm font-semibold text-emerald-400">ONLINE</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Sinal</span>
+                  <span class="text-xs sm:text-sm font-semibold text-zinc-300">5G Ultra Ativo</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Segurança</span>
+                  <span class="text-xs sm:text-sm font-semibold text-zinc-300">SSL 256-bit</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Suporte</span>
+                  <span class="text-xs sm:text-sm font-semibold text-blue-400">Atendimento 24h</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Frete</span>
+                  <span class="text-xs sm:text-sm font-semibold text-zinc-300">Sedex com Rastreio</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold">Taxa de Atualização</span>
+                  <span class="text-xs sm:text-sm font-semibold text-purple-400">144 Hz Ativo</span>
+                </div>
+              </div>
+
+              <!-- Legenda Informativa Inferior -->
+              <div class="z-20 flex flex-col items-center pointer-events-none opacity-80 text-center w-full mt-6">
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-purple-400" id="txt-scrollAnimateTitle">INTERAÇÃO 3D DO SMARTPHONE</span>
+                <span class="text-[9px] text-zinc-500 uppercase tracking-widest flex items-center gap-1.5 mt-1.5" id="txt-scrollAnimateHelp">
+                  <i class="fa-solid fa-arrows-up-down animate-pulse"></i>
+                  Gire o celular rolando a página para baixo ou para cima
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lado Inferior: Chamada de Venda e Texto da Loja - AGORA ABAIXO DO CANVAS E FORA DELE -->
+          <div class="rounded-[40px] border bg-gradient-to-b from-white/[0.02] via-transparent to-white/[0.01] border-white/[0.06] p-8 sm:p-10 backdrop-blur-md shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
+              <div class="lg:col-span-5 flex flex-col gap-3">
+                <span class="text-xs font-semibold text-purple-400 tracking-[0.25em] uppercase block" id="txt-aboutBadge">A EXPERIÊNCIA AP PHONES</span>
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight text-white" id="txt-aboutTitle">O Seu Próximo Smartphone Está Aqui.</h2>
+                <div class="h-[1px] w-20 bg-gradient-to-r from-purple-500 to-transparent"></div>
+                <div class="flex items-center gap-6 mt-2">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Garantia Nacional</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="truck" class="w-4 h-4 text-blue-400"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Entrega Expressa</span>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-7 flex flex-col gap-4 lg:pt-2">
+                <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed" id="txt-aboutDesc1">
+                  Na AP PHONES, nós selecionamos de forma cuidadosa os 8 melhores smartphones do mercado atual. Nosso objetivo é oferecer aparelhos originais de altíssima performance, com preços imbatíveis e formas de pagamento que cabem no seu bolso.
+                </p>
+                <p class="text-zinc-500 text-[11px] sm:text-xs font-light leading-relaxed" id="txt-aboutDesc2">
+                  Garanta o seu celular com envio rápido por Sedex com seguro para todo o Brasil, suporte técnico completo para tirar as suas dúvidas e uma compra 100% protegida e segura do início ao fim.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= HERO / DETALHES PRINCIPAIS (LOGO ABAIXO DA ANIMAÇÃO DE SCROLL) ================= -->
+      <header class="relative pt-12 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+        <div class="relative rounded-[40px] border bg-gradient-to-b from-white/[0.05] to-transparent border-white/[0.08] p-8 sm:p-12 lg:p-20 flex flex-col items-center text-center overflow-hidden shadow-2xl transition-all duration-700" id="hero-banner">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
+
+          <div class="inline-flex items-center gap-2 px-3 py-1 border bg-white/[0.03] border-white/[0.08] rounded-full text-[10px] tracking-[0.25em] uppercase text-purple-400 mb-8 backdrop-blur-md" id="hero-badge">
+            <i data-lucide="radio" class="w-3.5 h-3.5 animate-pulse text-purple-400"></i>
+            <span id="txt-launchBadge">NOVA LINHA DE CELULARES JÁ DISPONÍVEL</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter leading-none mb-8">
+            <span class="bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-300 to-zinc-600 block" id="txt-heroTitle1">AP PHONES.</span>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 block" id="txt-heroTitle2">TECNOLOGIA E DESIGN.</span>
+          </h1>
+
+          <p class="text-zinc-400 text-sm sm:text-base max-w-3xl mb-12 font-light leading-relaxed" id="txt-heroDesc">
+            Encontre o smartphone ideal para o seu dia a dia. Descubra aparelhos com alta velocidade, câmeras profissionais de alta resolução, baterias de longa duração e acabamento premium. Escolha o seu modelo agora mesmo.
+          </p>
+
+          <!-- Métricas -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mb-12">
+            <div class="p-5 rounded-3xl border bg-white/[0.01] border-white/[0.04] transition-all" id="metric-card-1">
+              <div class="text-3xl font-black text-white" id="metric-val-1">Snap <span class="text-xs text-purple-400">Gen 4</span></div>
+              <div class="text-[9px] text-zinc-500 tracking-wider uppercase mt-1" id="txt-coreQuantum">Processador Ultra Rápido</div>
+            </div>
+            <div class="p-5 rounded-3xl border bg-white/[0.01] border-white/[0.04] transition-all" id="metric-card-2">
+              <div class="text-3xl font-black text-white" id="metric-val-2">200 <span class="text-xs text-blue-400">MP</span></div>
+              <div class="text-[9px] text-zinc-500 tracking-wider uppercase mt-1" id="txt-lenses">Câmera de Alta Resolução</div>
+            </div>
+            <div class="p-5 rounded-3xl border bg-white/[0.01] border-white/[0.04] transition-all" id="metric-card-3">
+              <div class="text-3xl font-black text-white" id="metric-val-3">165 <span class="text-xs text-cyan-400">Hz</span></div>
+              <div class="text-[9px] text-zinc-500 tracking-wider uppercase mt-1" id="txt-refreshRate">Tela Super Fluida</div>
+            </div>
+            <div class="p-5 rounded-3xl border bg-white/[0.01] border-white/[0.04] transition-all" id="metric-card-4">
+              <div class="text-3xl font-black text-white" id="metric-val-4">125 <span class="text-xs text-amber-500">W</span></div>
+              <div class="text-[9px] text-zinc-500 tracking-wider uppercase mt-1" id="txt-zeroLatency">Bateria de Longa Duração</div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 items-center">
+            <button onclick="navigateToDetail('phone-s25ultra')" class="px-10 py-4 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 font-bold text-xs tracking-wider uppercase text-white shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95" id="txt-heroBtnConfig">
+              Escolher Galaxy S25 Ultra
+            </button>
+            <button onclick="document.getElementById('grid-aparelhos').scrollIntoView({ behavior: 'smooth' })" class="px-10 py-4 rounded-full border bg-white/[0.03] border-white/[0.08] text-zinc-300 hover:text-white font-bold text-xs tracking-wider uppercase transition-all" id="txt-heroBtnExplore">
+              Ver os Aparelhos
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- SEÇÃO VITRINE (8 CELULARES 1:1) -->
+      <section id="grid-aparelhos" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-24">
+        <div class="mb-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/[0.04] pb-8">
+          <div class="text-left">
+            <span class="text-xs font-semibold text-purple-400 tracking-widest uppercase block mb-1" id="txt-catalogTitle">Catálogo Principal</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white" id="txt-catalogDesc">Os 8 Dispositivos Revolucionários</h2>
+          </div>
+          <div class="text-zinc-500 text-xs font-light max-w-md text-center md:text-right" id="txt-catalogHelp">
+            Passe o mouse por cima de cada card para ver reflexos holográficos ativos do acabamento. Clique para abrir os detalhes.
+          </div>
+        </div>
+
+        <!-- Grid injetada dinamicamente via JS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="products-grid"></div>
+      </section>
+
+      <!-- BANNER PROMOCIONAL -->
+      <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="relative rounded-[32px] border bg-gradient-to-r from-indigo-950/20 to-purple-950/20 border-white/[0.04] p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-md" id="promo-banner">
+          <div class="text-left max-w-xl">
+            <span class="text-xs text-purple-400 font-semibold tracking-wider uppercase block mb-1" id="txt-upgradeTitle">CUPOM PROMOCIONAL</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight" id="txt-upgradePromo">Garanta seu novo smartphone com 20% de desconto</h3>
+            <p class="text-xs text-zinc-400 mt-2 font-light" id="txt-upgradeDesc">Utilize o código promocional 'QUANTUM20' no carrinho de compras e aproveite esta oferta exclusiva.</p>
+          </div>
+          <button onclick="navigateToDetail('phone-solaris')" class="px-8 py-4 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 flex-shrink-0">
+            <span id="txt-upgradeBtn">Comprar Solaris Nova</span> <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- PÁGINA DETALHES DO PRODUTO -->
+    <div id="page-detail" class="page-container animate-fadeIn hidden">
+      <div class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-white mb-10 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> <span id="txt-backBtn">Voltar para a Loja</span>
+        </button>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <!-- Foto Maximizada sem bordas imitadoras de Celular -->
+          <div class="lg:col-span-6 flex flex-col gap-6">
+            <div class="relative w-full h-[550px] sm:h-[650px] rounded-[40px] border border-white/[0.08] flex items-center justify-center overflow-hidden p-8 backdrop-blur-md" id="detail-photo-wrapper">
+              <!-- Active Glow Aura -->
+              <div class="absolute w-[400px] h-[400px] rounded-full opacity-20 blur-[100px] transition-colors duration-700" id="detail-glow-aura"></div>
+
+              <!-- Imagem Flutuando diretamente no Background -->
+              <div class="relative z-20 w-full h-full flex items-center justify-center p-2 sm:p-6">
+                <img id="detail-prod-img-element" src="" alt="Phone" class="w-full h-full object-contain filter drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] hover:scale-105 transition-transform duration-500">
+              </div>
+
+              <!-- Indicators -->
+              <div class="absolute top-6 left-6 bg-black/60 border border-white/[0.06] p-3 rounded-xl text-left">
+                <div class="text-[9px] text-zinc-500 uppercase tracking-widest">ESTRUTURA</div>
+                <div class="text-xs font-bold text-white" id="detail-frame-spec">Chassi Reforçado</div>
+              </div>
+              <div class="absolute bottom-6 right-6 bg-black/60 border border-white/[0.06] p-3 rounded-xl text-left">
+                <div class="text-[9px] text-zinc-500 uppercase tracking-widest">VALOR AJUSTADO</div>
+                <div class="text-xs font-bold text-purple-400" id="detail-price-preview">R$ 1.299,00</div>
+              </div>
+            </div>
+
+            <!-- Extended Specs -->
+            <div class="border rounded-3xl p-6 backdrop-blur-md bg-white/[0.01] border-white/[0.06]" id="detail-specs-box">
+              <h4 class="text-xs font-bold uppercase tracking-wider mb-4 text-white text-left" id="txt-specsTitle">Módulos de Sistema Analisados</h4>
+              <div class="grid grid-cols-2 gap-4" id="detail-specs-grid"></div>
+            </div>
+          </div>
+
+          <!-- Direita: Customização de Armazenamento e Compra -->
+          <div class="lg:col-span-6 border rounded-[40px] p-8 sm:p-10 backdrop-blur-xl flex flex-col gap-8 bg-white/[0.01] border-white/[0.06]" id="detail-config-panel">
+            <div class="text-left">
+              <span class="text-xs font-bold text-purple-400 tracking-wider uppercase block mb-2" id="txt-configTitle">PERSONALIZE SEU NOVO CELULAR</span>
+              <h2 class="text-4xl font-black tracking-tight text-white" id="detail-title">Alpha Horizon</h2>
+              <p class="text-sm font-light mt-4 leading-relaxed text-zinc-400 text-left" id="detail-description">
+                O Alpha Horizon combina o processador mais rápido do mercado com um conjunto de câmeras triplas de alta qualidade.
+              </p>
+            </div>
+
+            <div class="border-white/[0.06] border-b" id="detail-divider-1"></div>
+
+            <!-- Armazenamento -->
+            <div class="text-left">
+              <div class="text-xs font-bold tracking-wider uppercase block mb-4 text-zinc-400">
+                <span id="txt-storageSelect">Selecione o espaço de armazenamento:</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3" id="detail-storages-container"></div>
+            </div>
+
+            <div class="border-white/[0.06] border-b" id="detail-divider-2"></div>
+
+            <!-- Preço e Botão Ampliado de Compra -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-2 gap-6">
+              <div class="text-left">
+                <span class="text-[10px] text-zinc-500 uppercase tracking-widest block font-bold" id="txt-finishPrice">VALOR FINAL</span>
+                <div class="flex items-baseline gap-1 text-white">
+                  <span class="text-4xl font-black" id="detail-final-price">R$ 1.299,00</span>
+                </div>
+              </div>
+              <button onclick="handleAddToCartFromDetail()" class="w-full sm:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 font-bold text-sm tracking-wider uppercase text-white shadow-xl transition-all duration-300 transform active:scale-95 text-center" id="txt-finishCart">
+                Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PÁGINA CARRINHO COMPLETO -->
+    <div id="page-cart" class="page-container animate-fadeIn hidden">
+      <div class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="flex items-center justify-between mb-10">
+          <div class="text-left">
+            <span class="text-xs text-purple-400 font-semibold tracking-widest uppercase block mb-1" id="txt-cartDesc">Resumo dos itens</span>
+            <h2 class="text-3xl font-extrabold text-white" id="txt-cartTitle">Seu Carrinho</h2>
+          </div>
+          <button onclick="navigateTo('home')" class="px-4 py-2 rounded-xl border bg-white/[0.02] hover:bg-white/[0.05] border-white/[0.06] text-xs font-semibold text-zinc-300 transition-colors" id="txt-cartBtnCont">
+            Continuar Comprando
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Lista -->
+          <div class="lg:col-span-7 flex flex-col gap-4" id="cart-items-container"></div>
+
+          <!-- Resumo e Cupom -->
+          <div class="lg:col-span-5 border rounded-[32px] p-6 backdrop-blur-xl flex flex-col gap-6 bg-white/[0.01] border-white/[0.06]" id="cart-summary-card">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-left text-white" id="txt-cartSummary">Resumo do Pedido</h3>
+            
+            <div class="flex flex-col gap-3 text-xs text-zinc-400 text-left">
+              <div class="flex justify-between">
+                <span id="txt-cartSubtotal">Valor dos Produtos</span>
+                <span id="cart-subtotal-val">R$ 0,00</span>
+              </div>
+              <div class="flex justify-between text-purple-400 font-semibold hidden" id="cart-discount-row">
+                <span id="txt-cartDiscount">Desconto do Cupom (20%)</span>
+                <span id="cart-discount-val">- R$ 0,00</span>
+              </div>
+              <div class="flex justify-between">
+                <span id="txt-cartShipping">Frete para todo o Brasil</span>
+                <span class="text-emerald-400 font-bold">GRÁTIS</span>
+              </div>
+            </div>
+
+            <hr class="border-white/[0.06]" id="cart-summary-divider-1">
+
+            <!-- Cupom -->
+            <div class="text-left">
+              <div class="text-[10px] font-bold text-zinc-500 tracking-wider uppercase block mb-2" id="txt-cartPromoLabel">Inserir Cupom</div>
+              <div class="flex gap-2">
+                <input type="text" id="coupon-input" placeholder="Ex: QUANTUM20" class="bg-black/40 border border-white/[0.08] rounded-xl px-3 text-xs text-white focus:outline-none focus:border-purple-500 flex-1 uppercase font-semibold">
+                <button onclick="validateCoupon()" class="px-4 py-3 rounded-xl border bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06] text-xs font-semibold uppercase text-white tracking-wider">
+                  Validar
+                </button>
+              </div>
+              <span class="text-[10px] mt-1 block font-semibold hidden" id="coupon-status-text"></span>
+            </div>
+
+            <hr class="border-white/[0.06]" id="cart-summary-divider-2">
+
+            <div class="flex items-center justify-between text-white">
+              <span class="text-xs text-zinc-500 font-bold uppercase tracking-wider" id="txt-cartTotal">VALOR TOTAL</span>
+              <div class="text-right">
+                <span class="text-3xl font-black text-white" id="cart-total-val">0</span>
+              </div>
+            </div>
+
+            <button onclick="navigateTo('checkout')" class="w-full py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-xs font-bold uppercase tracking-widest text-white shadow-xl duration-300 transform hover:scale-[1.01]" id="txt-cartBtnPay">
+              Finalizar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PÁGINA CHECKOUT -->
+    <div id="page-checkout" class="page-container animate-fadeIn hidden">
+      <div class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="text-xs text-purple-400 font-semibold tracking-widest uppercase block mb-1">Criptografia Ativa</span>
+          <h2 class="text-3xl font-extrabold text-white" id="txt-checkoutTitle">Finalizar Compra</h2>
+        </div>
+
+        <div class="border rounded-[40px] p-8 sm:p-10 backdrop-blur-xl relative overflow-hidden bg-white/[0.01] border-white/[0.06]" id="checkout-card">
+          <!-- Steps Line -->
+          <div class="flex items-center justify-center gap-6 mb-10 relative z-10">
+            <span class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-purple-600 text-white" id="step-1-indicator">1. Pagamento</span>
+            <span class="w-10 h-[1px] bg-white/[0.06]"></span>
+            <span class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-white/5 text-zinc-500" id="step-2-indicator">2. Confirmar</span>
+            <span class="w-10 h-[1px] bg-white/[0.06]"></span>
+            <span class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-white/5 text-zinc-500" id="step-3-indicator">3. Pronto</span>
+          </div>
+
+          <!-- Passo 1: Billing -->
+          <div id="checkout-step-billing" class="checkout-step-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+              <div class="flex flex-col gap-5 text-left">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-white">Identidade de Pagamento</h3>
+                
+                <div class="flex flex-col gap-1.5">
+                  <div class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold" id="txt-cardName">Nome impresso no cartão</div>
+                  <input type="text" id="card-holder-input" value="ALEXANNDER V. NEXUS" oninput="updateCardPreview()" class="bg-black/40 border border-white/[0.08] focus:border-purple-500 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold" id="txt-cardNumber">Número do cartão de crédito</div>
+                  <input type="text" id="card-number-input" value="0000 1111 2222 3333" oninput="updateCardPreview()" class="bg-black/40 border border-white/[0.08] focus:border-purple-500 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-1.5">
+                    <div class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold" id="txt-cardExp">Vencimento</div>
+                    <input type="text" id="card-exp-input" value="12/32" oninput="updateCardPreview()" placeholder="MM/AA" class="bg-black/40 border border-white/[0.08] focus:border-purple-500 rounded-xl px-4 py-3 text-xs text-white focus:outline-none text-center">
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <div class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold" id="txt-cardCvv">CVV</div>
+                    <input type="text" id="card-cvv-input" value="999" placeholder="123" class="bg-black/40 border border-white/[0.08] focus:border-purple-500 rounded-xl px-4 py-3 text-xs text-white focus:outline-none text-center">
+                  </div>
+                </div>
+
+                <button onclick="setCheckoutStep('payment')" class="mt-4 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-xs font-bold uppercase tracking-wider text-white shadow-xl transition-all w-full text-center">
+                  Seguir para Biometria
+                </button>
+              </div>
+
+              <!-- Cartão de Crédito Físico Simulado -->
+              <div class="flex flex-col items-center justify-center p-6 bg-white/[0.01] border border-white/[0.04] rounded-3xl">
+                <div class="w-full max-w-[280px] h-[170px] rounded-2xl bg-gradient-to-tr from-zinc-800 via-zinc-950 to-purple-950 p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden border border-white/[0.08]">
+                  <div class="flex justify-between items-start">
+                    <div class="w-8 h-6 bg-yellow-500/10 border border-yellow-500/20 rounded-md"></div>
+                    <div class="w-5 h-5 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full"></div>
+                  </div>
+
+                  <div class="text-sm font-bold text-white tracking-widest text-center my-auto" id="card-preview-number">
+                    0000 1111 2222 3333
+                  </div>
+
+                  <div class="flex justify-between items-end text-[8px] text-zinc-400">
+                    <div class="text-left">
+                      <p class="uppercase text-[6px]">TITULAR</p>
+                      <p class="font-semibold text-white tracking-wide" id="card-preview-holder">ALEXANNDER V. NEXUS</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="uppercase text-[6px]">EXPIRY</p>
+                      <p class="font-semibold text-white" id="card-preview-exp">12/32</p>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-[10px] text-zinc-500 uppercase tracking-widest mt-4" id="txt-cardVirtual">Pagamento 100% Seguro e Criptografado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passo 2: Biometrics -->
+          <div id="checkout-step-payment" class="checkout-step-container hidden">
+            <div class="flex flex-col items-center justify-center py-10 text-center">
+              <div class="max-w-md">
+                <h3 class="text-lg font-bold text-white mb-2" id="txt-bioAuth">Confirmação de Segurança</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed mb-10" id="txt-bioDesc">Mantenha o dedo pressionado no leitor abaixo para simular a validação biométrica e concluir a compra com segurança.</p>
+                
+                <div class="relative flex flex-col items-center justify-center mb-8">
+                  <div class="absolute w-36 h-36 rounded-full border-2 border-white/[0.05] flex items-center justify-center">
+                    <svg class="absolute w-full h-full -rotate-90">
+                      <circle cx="72" cy="72" r="68" class="stroke-purple-600 stroke-2 fill-none transition-all duration-100" id="biometric-progress-ring" stroke-dasharray="427" stroke-dashoffset="427" />
+                    </svg>
+                  </div>
+
+                  <button onmousedown="startBiometricScan()" onmouseup="stopBiometricScan()" onmouseleave="stopBiometricScan()" ontouchstart="startBiometricScan()" ontouched="stopBiometricScan()" class="relative w-28 h-28 rounded-full border border-white/[0.08] bg-black/60 flex items-center justify-center transition-all hover:border-white/[0.15]" id="biometric-fingerprint-btn">
+                    <i data-lucide="fingerprint" class="w-12 h-12 text-zinc-500 transition-colors" id="biometric-icon"></i>
+                  </button>
+                </div>
+
+                <div class="text-xs font-semibold uppercase tracking-wider text-zinc-400 h-6" id="biometric-status">
+                  Pressione aqui para confirmar
+                </div>
+
+                <button onclick="setCheckoutStep('billing')" class="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-white mt-10 transition-colors">
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Voltar aos Dados
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passo 3: Completed Recibo -->
+          <div id="checkout-step-completed" class="checkout-step-container hidden">
+            <div class="flex flex-col items-center justify-center py-12 text-center">
+              <div class="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 shadow-[0_0_30px_rgba(16,185,129,0.15)]">
+                <i data-lucide="check" class="w-10 h-10"></i>
+              </div>
+
+              <h3 class="text-2xl font-black uppercase tracking-wider mb-2 text-white" id="txt-checkoutSuccessTitle">Compra Realizada!</h3>
+              <p class="text-sm text-zinc-500 max-w-sm leading-relaxed mb-10" id="txt-checkoutSuccessDesc">Seu pedido foi recebido com sucesso. Em breve você receberá as informações de rastreio para acompanhar a entrega.</p>
+
+              <div class="flex gap-4">
+                <button onclick="navigateTo('home')" class="px-6 py-3 rounded-xl border bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.08] text-xs font-bold uppercase tracking-wider text-white" id="txt-checkoutSuccessBtnHome">
+                  Voltar para Home
+                </button>
+                <button onclick="navigateTo('profile')" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs font-bold uppercase tracking-wider text-white" id="txt-checkoutSuccessBtnProfile">
+                  Ver Meu Perfil
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PÁGINA PERFIL -->
+    <div id="page-profile" class="page-container animate-fadeIn hidden">
+      <div class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-xs text-purple-400 font-semibold tracking-widest uppercase block mb-1" id="profile-access">Nível de Acesso</span>
+          <h2 class="text-3xl font-extrabold text-white" id="txt-profileTitle">Console de Perfil Criptográfico</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <!-- Card de Membro -->
+          <div class="md:col-span-5 border rounded-[32px] p-6 backdrop-blur-xl flex flex-col items-center text-center bg-white/[0.01] border-white/[0.06]" id="profile-card">
+            <div class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-purple-600 via-indigo-600 to-blue-600 p-0.5 mb-6">
+              <div class="w-full h-full rounded-full flex items-center justify-center bg-[#040406]" id="profile-avatar-bg">
+                <i data-lucide="user" class="w-10 h-10 text-zinc-400"></i>
+              </div>
+              <span class="absolute bottom-1 right-1 w-4.5 h-4.5 rounded-full bg-emerald-500 border border-black"></span>
+            </div>
+
+            <h3 class="text-lg font-bold tracking-wide text-white">Alexannder V. Nexus</h3>
+            <p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-1" id="txt-profileTier">CLIENTE EXCLUSIVO AP PHONES</p>
+
+            <div class="w-full h-[1px] bg-white/[0.06] my-6" id="profile-divider-1"></div>
+
+            <div class="w-full flex flex-col gap-3 text-xs text-left">
+              <div class="flex justify-between py-1.5 border-b border-white/[0.03]" id="profile-id-row">
+                <span class="text-zinc-500" id="lbl-id">Membro ID</span>
+                <span class="font-mono text-[10px] text-zinc-400">AP-PHONES-9922</span>
+              </div>
+              <div class="flex justify-between py-1.5 border-b border-white/[0.03]" id="profile-region-row">
+                <span class="text-zinc-500" id="lbl-region">Região de Entrega</span>
+                <span class="text-zinc-400" id="lbl-region-val">São Paulo, Brasil</span>
+              </div>
+              <div class="flex justify-between py-1.5">
+                <span class="text-zinc-500" id="lbl-status">Status</span>
+                <span class="text-emerald-400 font-bold" id="lbl-status-val">CONECTADO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detalhes da Conta -->
+          <div class="md:col-span-7 flex flex-col gap-6">
+            <!-- Saldo -->
+            <div class="border rounded-[32px] p-6 backdrop-blur-xl text-left flex items-center justify-between bg-white/[0.01] border-white/[0.06]" id="profile-bal-card">
+              <div>
+                <span class="text-[9px] text-zinc-500 uppercase tracking-widest font-bold" id="txt-profileBal">Créditos Disponíveis</span>
+                <div class="text-3xl font-black text-white mt-1">
+                  R$ 14.820,00
+                </div>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-purple-600/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                <i data-lucide="credit-card" class="w-6 h-6"></i>
+              </div>
+            </div>
+
+            <!-- Compras -->
+            <div class="border rounded-[32px] p-6 backdrop-blur-xl text-left bg-white/[0.01] border-white/[0.06]" id="profile-history-card">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4 flex items-center gap-2">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-purple-400"></i> <span id="txt-profileHistory">Histórico de Compras</span>
+              </h4>
+              <div class="flex flex-col gap-3">
+                <div class="p-3.5 rounded-xl bg-black/30 border border-white/[0.03] flex items-center justify-between">
+                  <div>
+                    <p class="text-xs font-semibold text-white">Motorola Edge 60 Pro</p>
+                    <p class="text-[9px] text-zinc-500 mt-0.5">Design Curvado Premium</p>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-400">Sincronizado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Segurança -->
+            <div class="border rounded-[32px] p-6 backdrop-blur-xl text-left bg-white/[0.01] border-white/[0.06]" id="profile-security-card">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4 flex items-center gap-2">
+                <i data-lucide="lock" class="w-3.5 h-3.5 text-purple-400"></i> <span id="txt-profileSecurity">Segurança da Conta</span>
+              </h4>
+              <p class="text-xs text-zinc-500 leading-relaxed mb-4" id="txt-profileSecurityDesc">Sua conta está protegida por verificação de segurança em duas etapas.</p>
+              
+              <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/20 flex items-center gap-3">
+                <i data-lucide="globe" class="w-5 h-5 text-purple-400 animate-pulse"></i>
+                <span class="text-[10px] font-semibold text-purple-300 uppercase tracking-widest" id="txt-profileVpn">Conexão Criptografada Ativa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- --- GAVETA LATERAL DO CARRINHO (Acesso Rápido) --- -->
+  <div class="fixed inset-0 z-50 pointer-events-none invisible transition-all duration-700" id="cart-drawer-root">
+    <div onclick="toggleCartDrawer(false)" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-700 pointer-events-auto" id="cart-drawer-overlay"></div>
+    <div class="absolute top-0 right-0 w-full max-w-md h-full bg-[#040406]/95 border-l border-white/[0.08] shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-700 ease-out pointer-events-auto" id="cart-drawer-sidebar">
+      
+      <!-- Header -->
+      <div class="p-6 border-b border-white/[0.06] flex items-center justify-between">
+        <div class="flex items-center gap-2.5 text-white">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-purple-400"></i>
+          <h3 class="text-base font-bold tracking-wide" id="txt-cartSlideTitle">Carrinho de Compras</h3>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/[0.04] text-zinc-400" id="cart-drawer-count">0</span>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="p-1.5 rounded-full hover:bg-white/[0.06] border border-transparent hover:border-white/[0.08] text-zinc-400 hover:text-white transition-all">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Itens Recarregados -->
+      <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-5" id="cart-drawer-items"></div>
+
+      <!-- Footer do Drawer -->
+      <div class="p-6 border-t border-white/[0.06] bg-black/40 backdrop-blur-md flex flex-col gap-4">
+        <div class="flex items-center justify-between text-white">
+          <span class="text-xs text-zinc-400 font-medium">SUBTOTAL</span>
+          <div class="text-right">
+            <span class="text-3xl font-black tracking-tight" id="cart-drawer-subtotal">R$ 0,00</span>
+          </div>
+        </div>
+
+        <button onclick="toggleCartDrawer(false); navigateTo('cart');" class="relative w-full h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 font-bold text-xs tracking-widest uppercase text-white shadow-xl hover:shadow-purple-500/10 active:scale-[0.98] transition-all group overflow-hidden" id="cart-drawer-checkout-btn">
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <span id="txt-cartSlideCheckout">Ver Carrinho Completo</span> <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- --- FOOTER --- -->
+  <footer class="border-t border-white/[0.04] bg-black/60 relative z-10 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs font-light text-zinc-500 transition-colors duration-700" id="footer-el">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-4 bg-gradient-to-tr from-purple-500 to-blue-500 rounded rotate-45"></div>
+        <span class="font-bold tracking-widest text-[10px] text-zinc-400">AP PHONES</span>
+      </div>
+      <p id="txt-footerRights">Todos os direitos reservados. Vendas e entregas garantidas com total proteção.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-purple-400 transition-colors">Termos / Terms</a>
+        <a href="#" class="hover:text-purple-400 transition-colors">Segurança / Security</a>
+        <a href="#" class="hover:text-purple-400 transition-colors">API</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT INTERATIVO (JS PURO) ================= -->
+  <script>
+    // === HELPER DE FORMATAÇÃO DE MOEDA (REAL) ===
+    function formatCurrency(val) {
+      return 'R$ ' + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // === DICIONÁRIO DE TRADUÇÃO COMPLETO ===
+    const translations = {
+      pt: {
+        launchBadge: "NOVA LINHA DE CELULARES JÁ DISPONÍVEL",
+        heroTitle1: "AP PHONES.",
+        heroTitle2: "TECNOLOGIA E DESIGN.",
+        heroDesc: "Encontre o smartphone ideal para o seu dia a dia. Descubra aparelhos com alta velocidade, câmeras profissionais de alta resolução, baterias de longa duração e acabamento premium. Escolha o seu modelo agora mesmo.",
+        heroBtnConfig: "Escolher Galaxy S25 Ultra",
+        heroBtnExplore: "Ver os 8 Aparelhos",
+        coreQuantum: "Processador Ultra Rápido",
+        lenses: "Câmera de Alta Resolução",
+        refreshRate: "Tela Super Fluida",
+        zeroLatency: "Bateria de Longa Duração",
+        catalogTitle: "Catálogo Principal",
+        catalogDesc: "Os 8 Dispositivos Revolucionários",
+        catalogHelp: "Passe o mouse por cima de cada card para ver reflexos holográficos ativos do acabamento. Clique para abrir os detalhes.",
+        detailsBtn: "Ver Detalhes",
+        addQuick: "Compra Rápida",
+        priceBase: "PREÇO IMPERDÍVEL",
+        upgradeTitle: "CUPOM PROMOCIONAL",
+        upgradePromo: "Garanta seu novo smartphone com 20% de desconto",
+        upgradeDesc: "Utilize o código promocional 'QUANTUM20' no carrinho de compras e aproveite esta oferta exclusiva.",
+        upgradeBtn: "Comprar Solaris Nova",
+        backBtn: "Voltar para a Loja",
+        configTitle: "PERSONALIZE SEU NOVO CELULAR",
+        finishCart: "Adicionar ao Carrinho",
+        finishPrice: "VALOR FINAL",
+        storageSelect: "Selecione o espaço de armazenamento:",
+        cartTitle: "Seu Carrinho",
+        cartDesc: "Resumo dos itens",
+        cartBtnCont: "Continuar Comprando",
+        cartBtnExplore: "Voltar para Vitrine",
+        cartEmpty: "Seu carrinho está vazio",
+        cartEmptySub: "Adicione celulares incríveis para continuar com a compra.",
+        cartSummary: "Resumo do Pedido",
+        cartSubtotal: "Valor dos Produtos",
+        cartDiscount: "Desconto do Cupom (20%)",
+        cartShipping: "Frete para todo o Brasil",
+        cartPromoLabel: "Inserir Cupom",
+        cartTotal: "VALOR TOTAL",
+        cartBtnPay: "Finalizar Pedido",
+        checkoutTitle: "Finalizar Compra",
+        cardName: "Nome impresso no cartão",
+        cardNumber: "Número do cartão de crédito",
+        cardExp: "Vencimento",
+        cardCvv: "CVV",
+        cardVirtual: "Pagamento 100% Seguro e Criptografado",
+        bioAuth: "Confirmação de Segurança",
+        bioDesc: "Mantenha o dedo pressionado no leitor abaixo para simular a validação biométrica e concluir a compra com segurança.",
+        bioScanning: "Processando biometria:",
+        bioHold: "Pressione aqui para confirmar",
+        bioSuccess: "Identidade validada com sucesso!",
+        checkoutSuccessTitle: "Compra Realizada!",
+        checkoutSuccessDesc: "Seu pedido foi recebido com sucesso. Em breve você receberá as informações de rastreio para acompanhar a entrega.",
+        checkoutSuccessBtnHome: "Voltar para Home",
+        checkoutSuccessBtnProfile: "Ver Meu Perfil",
+        profileTitle: "Console de Perfil Criptográfico",
+        profileTier: "CLIENTE EXCLUSIVO AP PHONES",
+        profileBal: "Créditos Disponíveis",
+        profileHistory: "Histórico de Compras",
+        profileSecurity: "Segurança da Conta",
+        profileSecurityDesc: "Sua conta está protegida por verificação de segurança em duas etapas.",
+        profileVpn: "Conexão Criptografada Ativa",
+        cartSlideTitle: "Carrinho de Compras",
+        cartSlideEmpty: "Seu carrinho está vazio no momento.",
+        cartSlideCheckout: "Ver Carrinho Completo",
+        menuPhones: "Celulares",
+        menuProfile: "Minha Conta",
+        menuCart: "Carrinho",
+        footerRights: "Todos os direitos reservados. Vendas e entregas garantidas com total proteção.",
+        aboutBadge: "A EXPERIÊNCIA AP PHONES",
+        aboutTitle: "O Seu Próximo Smartphone Está Aqui.",
+        aboutDesc1: "Na AP PHONES, nós selecionamos de forma cuidadosa os 8 melhores smartphones do mercado atual. Nosso objetivo é oferecer aparelhos originais de altíssima performance, com preços imbatíveis e formas de pagamento que cabem no seu bolso.",
+        aboutDesc2: "Garanta o seu celular com envio rápido por Sedex com seguro para todo o Brasil, suporte técnico completo para tirar as suas dúvidas e uma compra 100% protegida e segura do início ao fim.",
+        scrollAnimateTitle: "INTERAÇÃO 3D DO SMARTPHONE",
+        scrollAnimateHelp: "Gire o celular rolando a página para baixo ou para cima"
+      },
+      en: {
+        launchBadge: "NEW SMARTPHONE LINEUP AVAILABLE NOW",
+        heroTitle1: "AP PHONES.",
+        heroTitle2: "TECH & DESIGN.",
+        heroDesc: "Find the perfect smartphone for your daily life. Discover high-speed devices, pro-grade high-resolution cameras, long-lasting battery life, and premium finishes. Choose your model now.",
+        heroBtnConfig: "Configure Galaxy S25 Ultra",
+        heroBtnExplore: "View 8 Phones",
+        coreQuantum: "Ultra Fast Processor",
+        lenses: "High Resolution Camera",
+        refreshRate: "Super Smooth Screen",
+        zeroLatency: "Long-lasting Battery",
+        catalogTitle: "Our Phones",
+        catalogDesc: "Choose your new smartphone",
+        catalogHelp: "Explore 8 exclusive high-performance models. Click on a card to see details, specs, and shop.",
+        detailsBtn: "View Details",
+        addQuick: "Quick Buy",
+        priceBase: "BEST VALUE",
+        upgradeTitle: "PROMOTIONAL EXPANSION",
+        upgradePromo: "Get your new smartphone with 20% off",
+        upgradeDesc: "Use neural promo code 'QUANTUM20' at checkout to release your special discount.",
+        upgradeBtn: "Shop Solaris Nova",
+        backBtn: "Back to Shop",
+        configTitle: "CUSTOMIZE YOUR NEW PHONE",
+        finishCart: "Add to Cart",
+        finishPrice: "TOTAL PRICE",
+        storageSelect: "Select storage size:",
+        cartTitle: "Your Cart",
+        cartDesc: "Items summary",
+        cartBtnCont: "Continue Shopping",
+        cartBtnExplore: "Back to Catalog",
+        cartEmpty: "Your cart is empty",
+        cartEmptySub: "Add amazing phones to proceed with your order.",
+        cartSummary: "Order Summary",
+        cartSubtotal: "Products Value",
+        cartDiscount: "Coupon Discount (20%)",
+        cartShipping: "Global Shipping",
+        cartPromoLabel: "Enter Coupon",
+        cartTotal: "TOTAL PRICE",
+        cartBtnPay: "Complete Order",
+        checkoutTitle: "Checkout Terminal",
+        cardName: "Cardholder Name",
+        cardNumber: "Credit Card Number",
+        cardExp: "Expiry",
+        cardCvv: "CVV",
+        cardVirtual: "100% Secure and Encrypted Payment",
+        bioAuth: "Security Confirmation",
+        bioDesc: "Hold your finger on the scanner below to simulate biometric confirmation and finish your purchase securely.",
+        bioScanning: "Processing biometrics:",
+        bioHold: "Press and hold to confirm",
+        bioSuccess: "Identity validated successfully!",
+        checkoutSuccessTitle: "Order Placed!",
+        checkoutSuccessDesc: "Your order has been received successfully. You will receive tracking information soon.",
+        checkoutSuccessBtnHome: "Return to Home",
+        checkoutSuccessBtnProfile: "My Account Profile",
+        profileTitle: "Client Center",
+        profileTier: "AP PHONES ELITE MEMBER",
+        profileBal: "Available Credits",
+        profileHistory: "Purchase History",
+        profileSecurity: "Account Security",
+        profileSecurityDesc: "Your account is protected by robust two-factor verification protocols.",
+        profileVpn: "Encrypted Link Active",
+        cartSlideTitle: "Shopping Cart",
+        cartSlideEmpty: "Your cart is currently empty.",
+        cartSlideCheckout: "View Full Cart",
+        menuPhones: "Phones",
+        menuProfile: "My Account",
+        menuCart: "Cart",
+        footerRights: "All rights reserved. Sales and deliveries guaranteed with total protection.",
+        aboutBadge: "THE AP PHONES EXPERIENCE",
+        aboutTitle: "Your Next Smartphone is Here.",
+        aboutDesc1: "At AP PHONES, we simplify your choices. We bring you an exclusive catalog consisting of the 8 finest smartphones on the market. Original models, fully guaranteed, unbeatable pricing, and easy payment installments to get your hands on premium technology.",
+        aboutDesc2: "Our commitment is your total satisfaction. We offer complete technical support, fast nationwide secured shipping, and a 100% protected checkout sequence so you can choose your next phone with ease.",
+        scrollAnimateTitle: "3D SMARTPHONE INTERACTION",
+        scrollAnimateHelp: "Rotate the phone by scrolling the page down or up"
+      }
+    };
+
+    // === BANCO DE DADOS DE SMARTPHONES AP PHONES (PRESERVANDO CAMINHOS ORIGINAIS) ===
+    const productsDatabase = {
+      smartphones: [
+        {
+          id: 'phone-edge60pro',
+          name: 'Motorola Edge 60 Pro',
+          tagline: { pt: 'Design Curvado e Performance Fluida de 144Hz.', en: 'Curved Design and Fluid 144Hz Performance.' },
+          description: {
+            pt: 'O Motorola Edge 60 Pro destaca-se pela sua espetacular tela pOLED Infinite Edge de 144Hz, chassi fino e leve, além da avançada inteligência de câmera Moto AI Engine, que garante capturas de nível profissional com rapidez.',
+            en: 'The Motorola Edge 60 Pro stands out with its gorgeous 144Hz Infinite Edge pOLED display, lightweight frame, and advanced Moto AI Camera Engine for professional and instant capture under any lighting.'
+          },
+          basePrice: 3299,
+          originalPrice: 3999,
+          badge: { pt: 'Design Curvado', en: 'Curved Design' },
+          category: 'smartphones',
+          image: './imgs/edge60.jpeg',
+          imageDetail: './imgs/solitario/edge60-solitario.jpeg',
+          specs: 'pOLED 144Hz Infinite Edge • Snapdragon 7+ Gen 4',
+          iconType: 'cpu',
+          extendedSpecs: [
+            { label: 'Processador / CPU', value: 'Snapdragon 7+ Gen 4 (Octa-core)' },
+            { label: 'Display / Tela', value: 'pOLED 144Hz Infinite Edge de alta saturação' },
+            { label: 'Câmera Traseira', value: 'Módulo triplo inteligente com Moto AI Engine' },
+            { label: 'Carregamento / Power', value: '68W TurboPower incluso na caixa' },
+            { label: 'Conetividade', value: 'Wi-Fi 7 Ready e 5G ultrarrápido' },
+            { label: 'Proteção / Resistência', value: 'Certificado IP68 contra água e poeira' },
+            { label: 'Memória RAM', value: '12 GB de RAM de alta velocidade' },
+            { label: 'Armazenamento', value: '256 GB de memória interna' }
+          ],
+          colors: [
+            { name: 'Black Quartz', class: 'bg-gradient-to-tr from-zinc-800 to-black', gradient: 'from-zinc-800 via-zinc-900 to-black', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '256GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-galaxya56',
+          name: 'Samsung Galaxy A56 5G',
+          tagline: { pt: 'Excelente custo-benefício com a segurança do Samsung Knox.', en: 'Amazing value meets high-grade Samsung Knox security.' },
+          description: {
+            pt: 'O celular mais vendido do mercado traz um lindo display Super AMOLED, recursos robustos de foto com Nightography e a robusta proteção do ecossistema Samsung Knox para resguardar todos os seus dados.',
+            en: 'The market bestseller brings a gorgeous Super AMOLED display, professional night photography capabilities, and robust Samsung Knox ecosystem integration to protect your critical data.'
+          },
+          basePrice: 2699,
+          originalPrice: 3299,
+          badge: { pt: 'Mais Vendido', en: 'Bestseller' },
+          category: 'smartphones',
+          image: './imgs/a56.jpeg',
+          imageDetail: './imgs/solitario/a56-solitario.jpeg',
+          specs: 'Super AMOLED • 50MP + Nightography • Samsung Knox',
+          iconType: 'shield',
+          extendedSpecs: [
+            { label: 'Processador / CPU', value: 'Exynos 1580 de alta eficiência' },
+            { label: 'Display / Tela', value: 'Super AMOLED de alto brilho e nitidez' },
+            { label: 'Câmera Principal', value: '50MP com estabilizador óptico' },
+            { label: 'Segurança / Guard', value: 'Samsung Knox Knox Vault integrado' },
+            { label: 'Resistência / IP', value: 'Certificação IP67 de proteção lateral' },
+            { label: 'Bateria / Power', value: '5000 mAh de longa durabilidade' },
+            { label: 'Memória RAM', value: '8 GB de RAM ativa' },
+            { label: 'Armazenamento', value: '512 GB para guardar tudo o que precisa' }
+          ],
+          colors: [
+            { name: 'Awesome Navy', class: 'bg-gradient-to-tr from-blue-900 to-zinc-950', gradient: 'from-blue-900 via-indigo-950 to-zinc-950', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '512GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-s25ultra',
+          name: 'Samsung Galaxy S25 Ultra',
+          tagline: { pt: 'A era da Inteligência Artificial em suas mãos com S-Pen.', en: 'The era of mobile AI in your hands with S-Pen.' },
+          description: {
+            pt: 'O smartphone definitivo com Galaxy AI 2026. Feito com chassi de alta resistência Gorilla Armor, processador topo de linha Snapdragon 8 Gen 4, caneta S-Pen inteligente integrada para produtividade e câmera surreal de 200 megapixels.',
+            en: 'The definitive smartphone experience featuring Galaxy AI 2026, premium Gorilla Armor resistance, Snapdragon 8 Gen 4, bluetooth S-Pen stylus, and a gorgeous 200MP camera system.'
+          },
+          basePrice: 6499,
+          originalPrice: 7999,
+          badge: { pt: 'Galaxy AI Integrada', en: 'Galaxy AI Inside' },
+          category: 'smartphones',
+          image: './imgs/s25.jpeg',
+          imageDetail: './imgs/solitario/s25-solitario.jpeg',
+          specs: 'Snapdragon 8 Gen 4 • Caneta Bluetooth S-Pen • 200MP OIS',
+          iconType: 'zap',
+          extendedSpecs: [
+            { label: 'Processador / CPU', value: 'Snapdragon 8 Gen 4 Flagship Edition' },
+            { label: 'Acessório / Stylus', value: 'S-Pen (Caneta Bluetooth multifuncional)' },
+            { label: 'Inteligência Artificial', value: 'Galaxy AI 2026 com novos comandos remotos' },
+            { label: 'Câmera Principal', value: '200MP OIS com super estabilização' },
+            { label: 'Display / Brilho', value: 'Dynamic AMOLED 2X de 2600 nits' },
+            { label: 'Gráficos / Gaming', value: 'Ray Tracing Ativo por hardware' },
+            { label: 'Material / Shield', value: 'Gorilla Armor resistente a riscos' },
+            { label: 'Memória RAM', value: '12 GB de RAM' }
+          ],
+          colors: [
+            { name: 'Titânio Cinza', class: 'bg-gradient-to-tr from-slate-400 to-stone-900', gradient: 'from-slate-400 via-zinc-600 to-stone-900', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '256GB', modifier: 0 },
+            { label: '512GB (Dobro Grátis)', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-iphone16',
+          name: 'Apple iPhone 16',
+          tagline: { pt: 'Rapidez extrema com o novo Chipset A18 Bionic.', en: 'Extreme speed powered by the new A18 Bionic Chip.' },
+          description: {
+            pt: 'O iPhone 16 traz um design refinado em alumínio aeroespacial, tela OLED brilhante de alta definição, sistema avançado de câmera dupla de 48MP e o chip A18 Bionic de alto desempenho, oferecendo até 22 horas de vídeo contínuo.',
+            en: 'The iPhone 16 features an aerospace-grade aluminum chassis, bright high-definition OLED display, advanced 48MP dual camera setup, and the powerful A18 Bionic chip.'
+          },
+          basePrice: 4799,
+          originalPrice: 5499,
+          badge: { pt: 'Destaque iOS', en: 'iOS Spotlight' },
+          category: 'smartphones',
+          image: './imgs/iphone16.jpeg',
+          imageDetail: './imgs/solitario/iphone16-solitario.jpeg',
+          specs: 'A18 Bionic / 5G • Câmeras 48MP + 12MP • Bateria 22h',
+          iconType: 'cpu',
+          extendedSpecs: [
+            { label: 'Processador / Chipset', value: 'Apple A18 Bionic (3nm)' },
+            { label: 'Câmeras', value: 'Principal 48MP + Ultrawide de 12MP' },
+            { label: 'Bateria / Autonomia', value: 'Bateria otimizada para até 22 horas de vídeo' },
+            { label: 'Display / Tela', value: 'Super Retina XDR OLED de 6.1"' },
+            { label: 'Resistência / IP', value: 'Classificação IP68 de resistência à água' },
+            { label: 'Armazenamento', value: '128 GB de memória de alta performance' }
+          ],
+          colors: [
+            { name: 'Rosa', class: 'bg-gradient-to-tr from-pink-300 to-rose-400', gradient: 'from-pink-300 via-rose-400 to-rose-950', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '128GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-iphone17promax',
+          name: 'Apple iPhone 17 Pro Max',
+          tagline: { pt: 'O ápice da tecnologia com Titânio Grau 5 e Chip A19 Pro.', en: 'The pinnacle of mobile tech with Titanium Grade 5 & A19 Pro.' },
+          description: {
+            pt: 'O modelo mais premium da Apple. Construído em Titânio Grau 5 de alta densidade, traz o inovador Chipset A19 Pro fabricado em 2nm para rodar gráficos pesados com Ray Tracing, câmera periscópica com zoom absurdo e gravação de vídeo em ProRes Log.',
+            en: 'Apples ultimate flagship. Engineered with Titanium Grade 5, featuring the revolutionary A19 Pro 2nm chip with Ray Tracing, periscope lens zoom, and ProRes Log 4K recording.'
+          },
+          basePrice: 10129,
+          originalPrice: 11899,
+          badge: { pt: 'Premium Titânio', en: 'Premium Titanium' },
+          category: 'smartphones',
+          image: './imgs/iphone17.jpeg',
+          imageDetail: './imgs/solitario/iphone17-solitario.jpeg',
+          specs: 'A19 Pro 2nm / Ray Tracing • Lente Periscópica • Titânio Grau 5',
+          iconType: 'prism',
+          extendedSpecs: [
+            { label: 'Chipset / Processador', value: 'A19 Pro 2nm de baixíssimo consumo' },
+            { label: 'Zoom Óptico', value: 'Lente Periscópica de longo alcance integrado' },
+            { label: 'Display / Painel', value: 'Super Retina XDR OLED de 120Hz LTPO' },
+            { label: 'Chassi / Material', value: 'Titânio Grau 5 Aeroespacial escovado' },
+            { label: 'Gravação / Vídeo', value: 'ProRes Log 4K 60FPS para cineastas' },
+            { label: 'Carregamento / Power', value: 'MagSafe 25W de indução rápida' },
+            { label: 'Armazenamento', value: '256 GB de memória interna integrada' }
+          ],
+          colors: [
+            { name: 'Titânio Natural', class: 'bg-gradient-to-tr from-stone-400 to-amber-100', gradient: 'from-stone-400 via-amber-100 to-zinc-950', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '256GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-pocof8ultra',
+          name: 'Xiaomi POCO F8 Ultra',
+          tagline: { pt: 'Desempenho monstruoso com refrigeração LiquidCool 4.0.', en: 'Monstrous performance with LiquidCool 4.0 vapor chamber.' },
+          description: {
+            pt: 'O rei dos games portáteis. Equipado com o processador Snapdragon 8s Gen 4, impressionantes 16GB de RAM LPDDR5X, tela incrível de 144Hz WQHD+ e carregamento de 120W para voltar ao jogo em minutos sem que o aparelho esquente.',
+            en: 'The king of mobile gaming. Equipped with Snapdragon 8s Gen 4, massive 16GB LPDDR5X RAM, 144Hz WQHD+ display, and ultra-fast 120W charging supported by LiquidCool 4.0.'
+          },
+          basePrice: 5720,
+          originalPrice: 6890,
+          badge: { pt: 'Performance Flagship', en: 'Gaming Flagship' },
+          category: 'smartphones',
+          image: './imgs/pocof6.jpeg', 
+          imageDetail: './imgs/solitario/pocof6-solitario.jpeg',
+          specs: 'Snapdragon 8s Gen 4 • Tela 144Hz WQHD+ • Carga 120W',
+          iconType: 'flame',
+          extendedSpecs: [
+            { label: 'Processador / Chipset', value: 'Snapdragon 8s Gen 4 Flagship Core' },
+            { label: 'Taxa / Tela', value: 'Tela Gamer de 144Hz WQHD+ AMOLED' },
+            { label: 'Carregamento / Carga', value: 'Carregador Ultra Rápido de 120W Hyper' },
+            { label: 'Resfriamento / Cooling', value: 'Câmara de Vapor LiquidCool 4.0' },
+            { label: 'Câmera / Foto', value: 'Sensor Sony LYTIA topo de linha' },
+            { label: 'Memória RAM', value: '16 GB LPDDR5X para multitasking absoluto' },
+            { label: 'Armazenamento', value: '512 GB de capacidade interna' }
+          ],
+          colors: [
+            { name: 'Cyber Yellow', class: 'bg-gradient-to-tr from-yellow-400 to-yellow-600', gradient: 'from-yellow-400 via-yellow-600 to-zinc-950', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '512GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-pocox7pro',
+          name: 'Xiaomi Poco X7 Pro',
+          tagline: { pt: 'Lançamento com poder extremo e carregamento de 120W.', en: 'Hot release with extreme power and 120W turbo charge.' },
+          description: {
+            pt: 'O novíssimo Poco X7 Pro traz o super processador Dimensity 9300+, câmera principal de 64MP com estabilização óptica real para fotos estáveis, além de recarregar a bateria de 5000 mAh em tempo recorde de 120W.',
+            en: 'The brand-new Poco X7 Pro brings the flagship Dimensity 9300+ processor, robust 64MP OIS camera for super stable photos, and charges the 5000 mAh battery instantly at 120W.'
+          },
+          basePrice: 3149,
+          originalPrice: 3899,
+          badge: { pt: 'Lançamento 2026', en: 'New Release' },
+          category: 'smartphones',
+          image: './imgs/pocox7.jpeg',
+          imageDetail: './imgs/solitario/pocox7-solitario.jpeg',
+          specs: 'Dimensity 9300+ • 64MP OIS • Turbo 120W • 144Hz AMOLED',
+          iconType: 'fold',
+          extendedSpecs: [
+            { label: 'Processador / CPU', value: 'MediaTek Dimensity 9300+ de 4nm' },
+            { label: 'Câmera Principal', value: '64MP com Estabilização Óptica (OIS)' },
+            { label: 'Carregamento / Power', value: '120W Turbo para cargas em minutos' },
+            { label: 'Display / Painel', value: 'Super AMOLED de 144Hz HDR10+' },
+            { label: 'Bateria', value: '5000 mAh com autonomia para até dois dias' },
+            { label: 'Memória RAM', value: '12 GB de RAM' },
+            { label: 'Armazenamento', value: '512 GB de armazenamento UFS 4.0' }
+          ],
+          colors: [
+            { name: 'Midnight Black', class: 'bg-gradient-to-tr from-zinc-800 to-black', gradient: 'from-zinc-800 via-zinc-900 to-black', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '512GB', modifier: 0 }
+          ]
+        },
+        {
+          id: 'phone-signature5g',
+          name: 'Motorola Signature 5G',
+          tagline: { pt: 'Edição Signature exclusiva em Couro Vegano e tela de 165Hz.', en: 'Exclusive Signature Edition in Vegan Leather & 165Hz screen.' },
+          description: {
+            pt: 'O smartphone de maior prestígio. Um acabamento traseiro único em Couro Vegano de altíssima qualidade tátil, combinado com o processador Snapdragon 8 Gen 4, tela pOLED de 165Hz, áudio Dolby Atmos de som cinema e recarga a 125W.',
+            en: 'The ultimate luxury smartphone. Features a breathtaking premium tactile Vegan Leather back, Snapdragon 8 Gen 4 processor, 165Hz pOLED display, Dolby Atmos audio, and 125W speed.'
+          },
+          basePrice: 8219,
+          originalPrice: 9499,
+          badge: { pt: 'Edição Signature', en: 'Signature Edition' },
+          category: 'smartphones',
+          image: './imgs/signature.jpeg',
+          imageDetail: './imgs/solitario/signature-solitario.jpeg',
+          specs: 'pOLED 165Hz • Snapdragon 8 Gen 4 • Áudio Dolby Atmos',
+          iconType: 'shield',
+          extendedSpecs: [
+            { label: 'Processador / Chipset', value: 'Snapdragon 8 Gen 4 de alta densidade' },
+            { label: 'Display / Tela', value: 'pOLED ultra-rápida de 165Hz' },
+            { label: 'Vídeo / Resolução', value: 'Gravação em formato profissional 8K Ultra HD' },
+            { label: 'Som / Áudio', value: 'Falantes estereofônicos Dolby Atmos' },
+            { label: 'Carregamento / Turbo', value: '125W TurboPower ultrarrápido' },
+            { label: 'Memória RAM', value: '16 GB de RAM para fluidez inabalável' },
+            { label: 'Armazenamento', value: '512 GB de capacidade interna de alta velocidade' },
+            { label: 'Design / Traseira', value: 'Revestimento em Couro Vegano macio de luxo' }
+          ],
+          colors: [
+            { name: 'Vegan Leather Forest', class: 'bg-gradient-to-tr from-emerald-800 to-zinc-950', gradient: 'from-emerald-800 via-teal-900 to-zinc-950', priceModifier: 0 }
+          ],
+          storages: [
+            { label: '512GB', modifier: 0 }
+          ]
+        }
+      ]
+    };
+
+    // === ESTADO GLOBAL DA APLICACÃO ===
+    let currentTheme = 'dark';
+    let currentLang = 'pt';
+    let activePage = 'home';
+    let cart = [];
+    let discountPercent = 0;
+    
+    let activeDetailedProd = null;
+    let selectedStorage = null;
+
+    let biometricInterval = null;
+    let biometricProgress = 0;
+
+    window.onload = function() {
+      lucide.createIcons();
+      renderProductsGrid();
+      updateTranslations();
+      initScrollAnimation();
+    };
+
+    // === ANIMAÇÃO DE SCROLL (CANVAS DE CELULAR ROTATIVO 3D) ===
+    function initScrollAnimation() {
+        const canvas = document.getElementById("phoneCanvas");
+        if (!canvas) return;
+        const context = canvas.getContext("2d");
+
+        // --- CONFIGURAÇÕES DO SCROLL ---
+        const frameCount = 71; 
+        const resolution = { width: 1280, height: 720 }; 
+
+        const currentFrame = index => `./imagens/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+
+        canvas.width = resolution.width;
+        canvas.height = resolution.height;
+
+        const scrollImages = [];
+        let loadedImages = 0;
+
+        // Pré-carregar todas as imagens do diretório local
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            scrollImages.push(img);
+            
+            img.onload = () => {
+                loadedImages++;
+                if(loadedImages === 1) {
+                    drawFrame(0);
+                }
+            };
+        }
+
+        // Caso a pasta local de imagens do scroll falte, desenha um celular holográfico estilizado como fallback impecável
+        function drawFallbackPhone(angle) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          
+          context.save();
+          context.translate(canvas.width / 2, canvas.height / 2);
+          context.rotate(angle * Math.PI / 180);
+
+          // Efeito de sombra holográfica
+          context.shadowColor = '#a855f7';
+          context.shadowBlur = 40;
+
+          // Desenha carcaça externa
+          context.strokeStyle = '#ffffff';
+          context.lineWidth = 4;
+          context.fillStyle = '#121214';
+          context.beginPath();
+          context.roundRect(-120, -210, 240, 420, 28);
+          context.fill();
+          context.stroke();
+
+          // Tela interna
+          context.shadowBlur = 0;
+          context.fillStyle = '#1e1b4b';
+          context.beginPath();
+          context.roundRect(-110, -200, 220, 400, 24);
+          context.fill();
+
+          // Detalhes de lente de câmera futurista
+          context.fillStyle = '#00f2fe';
+          context.beginPath();
+          context.arc(0, -140, 30, 0, Math.PI * 2);
+          context.fill();
+
+          // Brilho holográfico reflexivo na tela
+          context.fillStyle = 'rgba(255,255,255,0.06)';
+          context.beginPath();
+          context.moveTo(-100, -190);
+          context.lineTo(100, 190);
+          context.lineTo(70, 190);
+          context.lineTo(-100, -160);
+          context.closePath();
+          context.fill();
+
+          context.restore();
+        }
+
+        function drawFrame(index) {
+          if (scrollImages[index] && scrollImages[index].complete && scrollImages[index].naturalWidth !== 0) {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              context.drawImage(scrollImages[index], 0, 0, canvas.width, canvas.height);
+          } else {
+              // Se os arquivos de frames não existirem ainda, renderiza o fallback do celular 3D
+              const scrollContainer = document.getElementById('secao-sobre');
+              if (!scrollContainer) return;
+              const scrollTop = window.scrollY;
+              const containerTop = scrollContainer.offsetTop;
+              const containerHeight = scrollContainer.offsetHeight;
+              const relativeScroll = scrollTop - containerTop;
+              const maxScroll = containerHeight - window.innerHeight;
+              let scrollFraction = relativeScroll / maxScroll;
+              if (scrollFraction < 0) scrollFraction = 0;
+              if (scrollFraction > 1) scrollFraction = 1;
+              drawFallbackPhone(scrollFraction * 360);
+          }
+        }
+
+        window.addEventListener('scroll', () => {
+            if (activePage !== 'home') return;
+
+            const scrollContainer = document.getElementById('secao-sobre');
+            if (!scrollContainer) return;
+
+            const scrollTop = window.scrollY;
+            const containerTop = scrollContainer.offsetTop;
+            const containerHeight = scrollContainer.offsetHeight;
+
+            // Progresso do scroll dentro da seção sobre
+            const relativeScroll = scrollTop - containerTop;
+            const maxScroll = containerHeight - window.innerHeight;
+
+            let scrollFraction = relativeScroll / maxScroll;
+            if (scrollFraction < 0) scrollFraction = 0;
+            if (scrollFraction > 1) scrollFraction = 1;
+
+            const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
+            
+            requestAnimationFrame(() => {
+                drawFrame(frameIndex);
+            });
+        });
+    }
+
+    // === SISTEMA SEGURO DE ATUALIZAÇÃO DO DOM ===
+    function safeSetText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.innerText = text;
+    }
+
+    // === SISTEMA DE PAGINAÇÃO / NAVEGAÇÃO SPA ===
+    function navigateTo(pageId) {
+      activePage = pageId;
+      
+      document.querySelectorAll('.page-container').forEach(page => {
+        page.classList.add('hidden');
+      });
+
+      const activeEl = document.getElementById(`page-${pageId}`);
+      if (activeEl) {
+        activeEl.classList.remove('hidden');
+      }
+
+      const btnHome = document.getElementById('nav-btn-home');
+      const btnProfile = document.getElementById('nav-btn-profile');
+      const btnCart = document.getElementById('nav-btn-cart');
+
+      if (btnHome && btnProfile && btnCart) {
+        btnHome.className = `px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 ${pageId === 'home' ? (currentTheme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/10 text-zinc-900') : 'text-zinc-400 hover:text-purple-400'}`;
+        btnProfile.className = `px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 ${pageId === 'profile' ? (currentTheme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/10 text-zinc-900') : 'text-zinc-400 hover:text-purple-400'}`;
+        btnCart.className = `px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 ${pageId === 'cart' ? (currentTheme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/10 text-zinc-900') : 'text-zinc-400 hover:text-purple-400'}`;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // === SEÇÃO DETALHES DE PRODUTO ===
+    function navigateToDetail(prodId) {
+      const prod = productsDatabase.smartphones.find(p => p.id === prodId);
+      if (!prod) return;
+
+      activeDetailedProd = prod;
+      selectedStorage = prod.storages[0];
+
+      updateDetailView();
+      navigateTo('detail');
+    }
+
+    function updateDetailView() {
+      if (!activeDetailedProd) return;
+
+      safeSetText('detail-title', activeDetailedProd.name);
+      safeSetText('detail-description', activeDetailedProd.description[currentLang]);
+
+      const imgElement = document.getElementById('detail-prod-img-element');
+      if (imgElement) {
+        imgElement.src = activeDetailedProd.imageDetail;
+        imgElement.alt = activeDetailedProd.name;
+      }
+
+      const storageContainer = document.getElementById('detail-storages-container');
+      if (storageContainer) {
+        storageContainer.innerHTML = '';
+        activeDetailedProd.storages.forEach(st => {
+          const isSelected = selectedStorage.label === st.label;
+          const btn = document.createElement('button');
+          btn.onclick = () => { selectedStorage = st; updateDetailView(); };
+          btn.className = `px-4 py-4 rounded-2xl border text-xs font-semibold tracking-wide transition-all duration-300 flex flex-col items-center justify-center gap-1 ${isSelected ? 'bg-white/10 border-purple-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.15)]' : 'bg-transparent border-white/[0.06] text-zinc-400 hover:border-white/[0.12] hover:text-white'}`;
+          
+          let modifierTxt = st.modifier > 0 ? `<span class="text-[9px] text-purple-400 font-medium">Reset + ${formatCurrency(st.modifier)}</span>` : '';
+          btn.innerHTML = `<span>${st.label}</span>${modifierTxt}`;
+          
+          storageContainer.appendChild(btn);
+        });
+      }
+
+      const finalPrice = activeDetailedProd.basePrice + selectedStorage.modifier;
+      safeSetText('detail-final-price', formatCurrency(finalPrice));
+      safeSetText('detail-price-preview', formatCurrency(finalPrice));
+
+      const wrapperGlow = document.getElementById('detail-glow-aura');
+      if (wrapperGlow) {
+        wrapperGlow.className = `absolute w-[400px] h-[400px] rounded-full opacity-20 blur-[100px] transition-colors duration-700 bg-gradient-to-tr ${activeDetailedProd.colors[0].gradient}`;
+      }
+
+      const specsGrid = document.getElementById('detail-specs-grid');
+      if (specsGrid) {
+        specsGrid.innerHTML = '';
+        activeDetailedProd.extendedSpecs.forEach(spec => {
+          const div = document.createElement('div');
+          div.className = 'p-4 rounded-xl bg-black/30 border border-white/[0.03] text-left';
+          div.innerHTML = `
+            <span class="text-[9px] text-zinc-500 block uppercase tracking-wider">${spec.label}</span>
+            <span class="text-xs font-semibold text-zinc-300 mt-1 block">${spec.value}</span>
+          `;
+          specsGrid.appendChild(div);
+        });
+      }
+    }
+
+    // === CARREGAMENTO DOS PRODUTOS DA HOME ===
+    function renderProductsGrid() {
+      const grid = document.getElementById('products-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      productsDatabase.smartphones.forEach(prod => {
+        const card = document.createElement('div');
+        
+        const cardThemeClasses = currentTheme === 'dark' 
+          ? 'bg-white/[0.01] border-white/[0.06] hover:border-purple-500/30 hover:shadow-[0_0_35px_rgba(168,85,247,0.08)]' 
+          : 'bg-black/[0.01] border-black/[0.06] hover:border-purple-500/40 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]';
+
+        card.className = `group relative rounded-[28px] border p-5 flex flex-col justify-between overflow-hidden shadow-xl transition-all duration-500 backdrop-blur-lg ${cardThemeClasses} hover:-translate-y-1.5`;
+        
+        const badgeLabel = prod.badge ? prod.badge[currentLang] : '';
+        const badgeHtml = badgeLabel 
+          ? `<div class="absolute top-4 z-10 px-2.5 py-0.5 rounded-full bg-purple-600/90 text-white text-[9px] font-semibold tracking-wider uppercase">${badgeLabel}</div>`
+          : '';
+
+        card.innerHTML = `
+          ${badgeHtml}
+
+          <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-tr ${prod.colors[0].gradient} opacity-5 blur-2xl group-hover:opacity-15 transition-all duration-700"></div>
+          
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[9px] uppercase tracking-wider font-semibold mb-4 mt-6 ${currentTheme === 'dark' ? 'bg-white/[0.03] border-white/[0.06] text-zinc-400' : 'bg-black/[0.03] border-black/[0.06] text-zinc-600'}">
+              <i data-lucide="smartphone" class="w-3 h-3 text-purple-400"></i>
+              <span>${prod.category}</span>
+            </div>
+
+            <div class="w-full aspect-square rounded-2xl bg-black/40 border border-white/[0.04] mb-4 relative overflow-hidden flex items-center justify-center group-hover:border-white/[0.1] transition-colors duration-500">
+              <div class="absolute w-24 h-24 rounded-full bg-gradient-to-tr ${prod.colors[0].gradient} opacity-25 blur-xl group-hover:scale-125 transition-transform duration-700"></div>
+              
+              <img src="${prod.image}" alt="${prod.name}" class="relative z-10 w-4/5 h-4/5 object-contain filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.6)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
+            </div>
+
+            <h3 class="text-base font-bold mb-1 group-hover:text-purple-400 transition-colors duration-300 ${currentTheme === 'dark' ? 'text-white' : 'text-zinc-900'}">
+              ${prod.name}
+            </h3>
+            <p class="text-xs font-light mb-4 line-clamp-2 ${currentTheme === 'dark' ? 'text-zinc-500' : 'text-zinc-600'}">
+              ${prod.tagline[currentLang]}
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2.5 border-t border-white/[0.04] pt-4 mt-auto">
+            <div class="flex justify-between items-baseline">
+              <span class="text-[8px] text-zinc-500 tracking-wider uppercase font-bold text-price-base">${translations[currentLang].priceBase}</span>
+              <div class="text-right flex items-center justify-end gap-1">
+                <span class="text-[10px] text-zinc-500 line-through">${formatCurrency(prod.originalPrice)}</span>
+                <span class="text-base font-black ${currentTheme === 'dark' ? 'text-white' : 'text-zinc-900'}">
+                  ${formatCurrency(prod.basePrice)}
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-1.5">
+              <button onclick="navigateToDetail('${prod.id}')" class="col-span-4 px-2.5 py-2 rounded-xl border text-[9px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 ${currentTheme === 'dark' ? 'bg-white/[0.03] hover:bg-white/[0.08] border-white/[0.08] text-zinc-300 hover:text-white' : 'bg-black/[0.03] hover:bg-black/[0.08] border-black/[0.08] text-zinc-700 hover:text-zinc-950'}">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span class="txt-detailsBtn">${translations[currentLang].detailsBtn}</span>
+              </button>
+              <button onclick="handleQuickAdd('${prod.id}')" class="col-span-1 p-2 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white transition-all flex items-center justify-center" title="Compra Rápida">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+      
+      lucide.createIcons();
+    }
+
+    // === EVENTOS E INTERAÇÃO DO CARRINHO ===
+    function toggleCartDrawer(open) {
+      const root = document.getElementById('cart-drawer-root');
+      const overlay = document.getElementById('cart-drawer-overlay');
+      const sidebar = document.getElementById('cart-drawer-sidebar');
+
+      if (open && root && overlay && sidebar) {
+        root.classList.remove('invisible');
+        setTimeout(() => {
+          overlay.classList.add('opacity-100');
+          sidebar.classList.remove('translate-x-full');
+        }, 50);
+        renderCartDrawer();
+      } else if (root && overlay && sidebar) {
+        overlay.classList.remove('opacity-100');
+        sidebar.classList.add('translate-x-full');
+        setTimeout(() => {
+          root.classList.add('invisible');
+        }, 700);
+      }
+    }
+
+    function handleQuickAdd(prodId) {
+      const prod = productsDatabase.smartphones.find(p => p.id === prodId);
+      if (!prod) return;
+      addToCart(prod, { storage: prod.storages[0], price: prod.basePrice });
+      toggleCartDrawer(true);
+    }
+
+    function handleAddToCartFromDetail() {
+      if (!activeDetailedProd) return;
+      const calculatedPrice = activeDetailedProd.basePrice + selectedStorage.modifier;
+      addToCart(activeDetailedProd, { storage: selectedStorage, price: calculatedPrice });
+      toggleCartDrawer(true);
+    }
+
+    function addToCart(product, config) {
+      const cartId = `${product.id}-${config.storage.label}`;
+      const existing = cart.find(item => item.cartId === cartId);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          cartId: cartId,
+          id: product.id,
+          name: product.name,
+          price: config.price,
+          storage: config.storage,
+          quantity: 1,
+          category: product.category,
+          image: product.image,
+          defaultGradient: product.colors[0].gradient
+        });
+      }
+
+      const trigger = document.getElementById('cart-badge-trigger');
+      if (trigger) {
+        trigger.classList.add('scale-110', 'border-purple-500');
+        setTimeout(() => {
+          trigger.classList.remove('scale-110', 'border-purple-500');
+        }, 300);
+      }
+
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cart-badge-count');
+      if (!badge) return;
+      const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+      
+      if (count > 0) {
+        badge.innerText = count;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function changeCartItemQty(cartId, delta) {
+      const item = cart.find(i => i.cartId === cartId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => i.cartId !== cartId);
+      }
+
+      updateCartBadge();
+      renderCartDrawer();
+      if (activePage === 'cart') {
+        renderCartPage();
+      }
+    }
+
+    function removeCartItem(cartId) {
+      cart = cart.filter(i => i.cartId !== cartId);
+      updateCartBadge();
+      renderCartDrawer();
+      if (activePage === 'cart') {
+        renderCartPage();
+      }
+    }
+
+    function getSubtotal() {
+      return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    }
+
+    function getFinalTotal() {
+      const sub = getSubtotal();
+      return sub - (sub * (discountPercent / 100));
+    }
+
+    function renderCartDrawer() {
+      const container = document.getElementById('cart-drawer-items');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const countSpan = document.getElementById('cart-drawer-count');
+      if (countSpan) countSpan.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+      const checkoutBtn = document.getElementById('cart-drawer-checkout-btn');
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center gap-4 text-center opacity-40 py-20">
+            <div class="w-16 h-16 rounded-full border border-dashed border-white/20 flex items-center justify-center">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">${translations[currentLang].cartSlideEmpty}</p>
+            </div>
+          </div>
+        `;
+        if (checkoutBtn) {
+          checkoutBtn.setAttribute('disabled', 'true');
+          checkoutBtn.classList.add('opacity-30', 'pointer-events-none');
+        }
+      } else {
+        if (checkoutBtn) {
+          checkoutBtn.removeAttribute('disabled');
+          checkoutBtn.classList.remove('opacity-30', 'pointer-events-none');
+        }
+
+        cart.forEach(item => {
+          const div = document.createElement('div');
+          div.className = `group relative rounded-2xl border p-4 flex items-center justify-between gap-4 transition-all duration-300 ${currentTheme === 'dark' ? 'bg-white/[0.01] border-white/[0.04] hover:border-white/[0.08]' : 'bg-black/[0.01] border-black/[0.04] hover:border-black/[0.08]'}`;
+          div.innerHTML = `
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-black border border-white/[0.08] flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                <div class="absolute inset-1.5 bg-gradient-to-tr ${item.defaultGradient} rounded-lg opacity-30"></div>
+                <img src="${item.image}" alt="${item.name}" class="w-4/5 h-4/5 object-contain filter drop-shadow relative z-10">
+              </div>
+
+              <div class="text-left">
+                <h4 class="text-xs font-bold text-white group-hover:text-purple-400 transition-colors duration-300">${item.name}</h4>
+                <p class="text-[10px] text-zinc-500 font-medium">${item.storage.label}</p>
+                <p class="text-xs font-extrabold mt-1">${formatCurrency(item.price)}</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-end gap-3">
+              <button onclick="removeCartItem('${item.cartId}')" class="text-zinc-600 hover:text-rose-400 p-1 transition-colors">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+
+              <div class="flex items-center gap-2 bg-black/40 border border-white/[0.06] rounded-lg p-0.5">
+                <button onclick="changeCartItemQty('${item.cartId}', -1)" class="p-1 text-zinc-500 hover:text-white transition-colors">
+                  <i data-lucide="minus" class="w-3 h-3"></i>
+                </button>
+                <span class="text-xs font-bold text-white w-4 text-center">${item.quantity}</span>
+                <button onclick="changeCartItemQty('${item.cartId}', 1)" class="p-1 text-zinc-500 hover:text-white transition-colors">
+                  <i data-lucide="plus" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      const drawerSubtotal = document.getElementById('cart-drawer-subtotal');
+      if (drawerSubtotal) drawerSubtotal.innerText = formatCurrency(getSubtotal());
+      lucide.createIcons();
+    }
+
+    // === PÁGINA COMPLETA DO CARRINHO ===
+    function renderCartPage() {
+      const container = document.getElementById('cart-items-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const summaryCard = document.getElementById('cart-summary-card');
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="rounded-3xl border p-12 text-center flex flex-col items-center justify-center gap-4 ${currentTheme === 'dark' ? 'bg-white/[0.01] border-white/[0.06]' : 'bg-black/[0.01] border-black/[0.06]'}">
+            <div class="w-16 h-16 rounded-full border border-dashed border-white/20 flex items-center justify-center opacity-40">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold">${translations[currentLang].cartEmpty}</h3>
+              <p class="text-xs text-zinc-500 mt-1">${translations[currentLang].cartEmptySub}</p>
+            </div>
+            <button onclick="navigateTo('home')" class="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 font-bold text-xs uppercase tracking-wider text-white mt-4">
+              ${translations[currentLang].cartBtnExplore}
+            </button>
+          </div>
+        `;
+        if (summaryCard) summaryCard.classList.add('opacity-30', 'pointer-events-none');
+      } else {
+        if (summaryCard) summaryCard.classList.remove('opacity-30', 'pointer-events-none');
+
+        cart.forEach(item => {
+          const div = document.createElement('div');
+          div.className = `group rounded-3xl border p-5 flex items-center justify-between gap-6 hover:border-white/[0.12] transition-all ${currentTheme === 'dark' ? 'bg-white/[0.01] border-white/[0.06]' : 'bg-black/[0.01] border-black/[0.06]'}`;
+          div.innerHTML = `
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl bg-black border border-white/[0.08] flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                <div class="absolute inset-2 bg-gradient-to-tr ${item.defaultGradient} rounded-xl opacity-30"></div>
+                <img src="${item.image}" alt="${item.name}" class="w-4/5 h-4/5 object-contain filter drop-shadow relative z-10">
+              </div>
+
+              <div class="text-left">
+                <span class="text-[9px] px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06] uppercase text-zinc-500 tracking-wider font-semibold">
+                  ${item.category}
+                </span>
+                <h4 class="text-base font-bold mt-1.5 text-white">${item.name}</h4>
+                <p class="text-[11px] text-zinc-500 mt-0.5">${item.storage.label}</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-end gap-4">
+              <button onclick="removeCartItem('${item.cartId}')" class="p-1.5 rounded-lg text-zinc-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+
+              <div class="flex items-center gap-3 bg-black/40 border border-white/[0.06] rounded-xl p-1">
+                <button onclick="changeCartItemQty('${item.cartId}', -1)" class="p-1.5 rounded-lg text-zinc-500 hover:text-white transition-colors">
+                  <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                </button>
+                <span class="text-sm font-bold text-white w-6 text-center">${item.quantity}</span>
+                <button onclick="changeCartItemQty('${item.cartId}', 1)" class="p-1.5 rounded-lg text-zinc-500 hover:text-white transition-colors">
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      const subtotalValEl = document.getElementById('cart-subtotal-val');
+      if (subtotalValEl) subtotalValEl.innerText = formatCurrency(getSubtotal());
+      
+      const discountRow = document.getElementById('cart-discount-row');
+      if (discountRow) {
+        if (discountPercent > 0) {
+          discountRow.classList.remove('hidden');
+          const discountValEl = document.getElementById('cart-discount-val');
+          if (discountValEl) discountValEl.innerText = '- ' + formatCurrency(getSubtotal() * (discountPercent / 100));
+        } else {
+          discountRow.classList.add('hidden');
+        }
+      }
+
+      const cartTotalVal = document.getElementById('cart-total-val');
+      if (cartTotalVal) cartTotalVal.innerText = formatCurrency(getFinalTotal()).replace('R$ ', '');
+      lucide.createIcons();
+    }
+
+    function validateCoupon() {
+      const codeInput = document.getElementById('coupon-input');
+      if (!codeInput) return;
+      const code = codeInput.value.trim().toUpperCase();
+      const statusText = document.getElementById('coupon-status-text');
+      if (!statusText) return;
+
+      statusText.classList.remove('hidden');
+
+      if (code === 'QUANTUM20') {
+        discountPercent = 20;
+        statusText.className = "text-[10px] text-purple-400 mt-1 block font-semibold";
+        statusText.innerText = currentLang === 'pt' ? 'Cupom "QUANTUM20" ativo: 20% de desconto!' : 'Coupon "QUANTUM20" active: 20% discount!';
+        renderCartPage();
+      } else {
+        statusText.className = "text-[10px] text-rose-400 mt-1 block font-semibold";
+        statusText.innerText = currentLang === 'pt' ? 'Cupom inexistente ou inválido.' : 'Invalid coupon key.';
+      }
+    }
+
+    // === SISTEMA DE CHECKOUT & BIOMETRIA ===
+    function setCheckoutStep(step) {
+      checkoutStep = step;
+
+      document.querySelectorAll('.checkout-step-container').forEach(container => {
+        container.classList.add('hidden');
+      });
+
+      const stepContainer = document.getElementById(`checkout-step-${step}`);
+      if (stepContainer) stepContainer.classList.remove('hidden');
+
+      const step1 = document.getElementById('step-1-indicator');
+      const step2 = document.getElementById('step-2-indicator');
+      const step3 = document.getElementById('step-3-indicator');
+
+      if (step1 && step2 && step3) {
+        step1.className = `text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full ${step === 'billing' ? 'bg-purple-600 text-white' : 'bg-white/5 text-zinc-500'}`;
+        step2.className = `text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full ${step === 'payment' ? 'bg-purple-600 text-white' : 'bg-white/5 text-zinc-500'}`;
+        step3.className = `text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full ${step === 'completed' ? 'bg-purple-600 text-white' : 'bg-white/5 text-zinc-500'}`;
+      }
+    }
+
+    function updateCardPreview() {
+      const holderInput = document.getElementById('card-holder-input');
+      const numberInput = document.getElementById('card-number-input');
+      const expInput = document.getElementById('card-exp-input');
+
+      const holder = holderInput ? holderInput.value.toUpperCase() : '';
+      const number = numberInput ? numberInput.value : '';
+      const exp = expInput ? expInput.value : '';
+
+      const cardPreviewHolder = document.getElementById('card-preview-holder');
+      const cardPreviewNumber = document.getElementById('card-preview-number');
+      const cardPreviewExp = document.getElementById('card-preview-exp');
+
+      if (cardPreviewHolder) cardPreviewHolder.innerText = holder || "ALEXANNDER V. NEXUS";
+      if (cardPreviewNumber) cardPreviewNumber.innerText = number || "0000 1111 2222 3333";
+      if (cardPreviewExp) cardPreviewExp.innerText = exp || "12/32";
+    }
+
+    function startBiometricScan() {
+      biometricProgress = 0;
+      const ring = document.getElementById('biometric-progress-ring');
+      const status = document.getElementById('biometric-status');
+      const icon = document.getElementById('biometric-icon');
+
+      if (status) status.innerText = t('bioScanning') + " 0%";
+      if (icon) icon.classList.add('text-purple-400');
+
+      biometricInterval = setInterval(() => {
+        biometricProgress += 10;
+        if (biometricProgress > 100) biometricProgress = 100;
+
+        if (ring) {
+          const offset = 427 - (427 * biometricProgress) / 100;
+          ring.style.strokeDashoffset = offset;
+        }
+
+        if (status) status.innerText = t('bioScanning') + ` ${biometricProgress}%`;
+
+        if (biometricProgress >= 100) {
+          clearInterval(biometricInterval);
+          if (status) status.innerText = t('bioSuccess');
+          if (icon) {
+            icon.classList.remove('text-purple-400');
+            icon.classList.add('text-emerald-400');
+          }
+          
+          setTimeout(() => {
+            setCheckoutStep('completed');
+            cart = [];
+            updateCartBadge();
+          }, 1200);
+        }
+      }, 100);
+    }
+
+    function stopBiometricScan() {
+      if (biometricProgress < 100) {
+        clearInterval(biometricInterval);
+        biometricProgress = 0;
+        const ring = document.getElementById('biometric-progress-ring');
+        const status = document.getElementById('biometric-status');
+        const icon = document.getElementById('biometric-icon');
+
+        if (ring) ring.style.strokeDashoffset = 427;
+        if (status) status.innerText = t('bioHold');
+        if (icon) icon.className = "w-12 h-12 text-zinc-500 transition-colors";
+      }
+    }
+
+    // === CONTROLE DE INTERNACIONALIZAÇÃO (PT/EN) ===
+    function toggleLanguage() {
+      currentLang = currentLang === 'pt' ? 'en' : 'pt';
+      const langBtn = document.getElementById('lang-toggle-btn');
+      if (langBtn) langBtn.innerText = currentLang === 'pt' ? 'EN' : 'PT';
+      updateTranslations();
+      renderProductsGrid();
+      if (activePage === 'detail') updateDetailView();
+      if (activePage === 'cart') renderCartPage();
+    }
+
+    function updateTranslations() {
+      const keys = Object.keys(translations[currentLang]);
+      keys.forEach(key => {
+        const el = document.getElementById(`txt-${key}`);
+        if (el) {
+          el.innerText = translations[currentLang][key];
+        }
+      });
+    }
+
+    function t(key) {
+      return translations[currentLang][key] || key;
+    }
+
+    // === CONTROLE DE TEMA (CYBER OBSIDIAN / LUNAR TITANIUM) ===
+    function toggleTheme() {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      const body = document.getElementById('body-root');
+      const nav = document.getElementById('navbar');
+      const innerCube = document.getElementById('logo-inner-cube');
+      const logoText = document.getElementById('logo-text');
+      const toggleBtn = document.getElementById('theme-toggle-btn');
+      const footer = document.getElementById('footer-el');
+
+      if (currentTheme === 'light') {
+        if (body) body.className = "theme-transition min-h-screen bg-[#f5f5f7] text-zinc-900 selection:bg-purple-500/30 overflow-x-hidden relative";
+        if (nav) nav.className = "fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl h-16 bg-white/40 backdrop-blur-xl border border-black/[0.08] rounded-full flex items-center justify-between px-6 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all duration-700";
+        if (innerCube) innerCube.className = "absolute w-4.5 h-4.5 bg-[#f5f5f7] rounded-md rotate-45 transition-colors duration-700";
+        if (logoText) logoText.className = "font-bold text-[12px] tracking-[0.3em] bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-700 select-none block";
+        if (toggleBtn) {
+          toggleBtn.className = "p-2 rounded-full border bg-black/[0.04] hover:bg-black/[0.08] border-black/[0.08] transition-all text-purple-600";
+          toggleBtn.innerHTML = '<i data-lucide="moon" class="w-4 h-4"></i>';
+        }
+        if (footer) footer.className = "border-t relative z-10 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs font-light border-black/[0.04] bg-white/60 text-zinc-600 transition-colors duration-700";
+      } else {
+        if (body) body.className = "theme-transition min-h-screen bg-[#040406] text-zinc-100 selection:bg-purple-500/30 overflow-x-hidden relative";
+        if (nav) nav.className = "fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl h-16 bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-full flex items-center justify-between px-6 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700";
+        if (innerCube) innerCube.className = "absolute w-4.5 h-4.5 bg-[#040406] rounded-md rotate-45 transition-colors duration-700";
+        if (logoText) logoText.className = "font-bold text-[12px] tracking-[0.3em] bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-400 select-none block";
+        if (toggleBtn) {
+          toggleBtn.className = "p-2 rounded-full border bg-white/[0.04] hover:bg-white/[0.08] border-white/[0.08] transition-all text-yellow-400";
+          toggleBtn.innerHTML = '<i data-lucide="sun" class="w-4 h-4"></i>';
+        }
+        if (footer) footer.className = "border-t border-white/[0.04] bg-black/60 relative z-10 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs font-light text-zinc-500 transition-colors duration-700";
+      }
+
+      updateAurasTheme();
+      renderProductsGrid();
+      navigateTo(activePage);
+
+      lucide.createIcons();
+    }
+
+    function updateAurasTheme() {
+      const grid = document.getElementById('bg-grid');
+      const aura1 = document.getElementById('aura-1');
+      const aura2 = document.getElementById('aura-2');
+
+      if (currentTheme === 'light') {
+        if (grid) grid.className = "absolute inset-0 bg-[linear-gradient(to_right,#00000003_1px,transparent_1px),linear-gradient(to_bottom,#00000003_1px,transparent_1px)] bg-[size:50px_50px]";
+        if (aura1) aura1.className = "absolute top-[-10%] left-[5%] w-[800px] h-[800px] rounded-full bg-radial-gradient from-purple-200/40 via-transparent to-transparent blur-[120px] animate-pulse duration-[18s]";
+        if (aura2) aura2.className = "absolute top-[35%] right-[-10%] w-[900px] h-[900px] rounded-full bg-radial-gradient from-blue-200/40 via-transparent to-transparent blur-[140px]";
+      } else {
+        if (grid) grid.className = "absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:50px_50px]";
+        if (aura1) aura1.className = "absolute top-[-10%] left-[5%] w-[800px] h-[800px] rounded-full bg-radial-gradient from-purple-900/15 via-transparent to-transparent blur-[140px] animate-pulse duration-[18s]";
+        if (aura2) aura2.className = "absolute top-[35%] right-[-10%] w-[900px] h-[900px] rounded-full bg-radial-gradient from-blue-900/15 via-transparent to-transparent blur-[160px]";
+      }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>
